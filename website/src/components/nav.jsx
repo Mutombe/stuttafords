@@ -31,12 +31,8 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="bg-gradient-to-r from-yellow-400 to-red-500 p-2 rounded-lg">
-              <Truck className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-gray-900">Stuttafords Zimbabwe</h1>
-              <p className="text-xs text-gray-600">The Best Move You Can Make!</p>
+            <div className="p-2 rounded-lg">
+              <img src="/logo2.png" alt="Stuttafords Zimbabwe Logo" className="h-16 w-42" />
             </div>
           </Link>
 
@@ -48,7 +44,7 @@ const Navigation = () => {
             <Link to="/faq" className="text-gray-700 hover:text-orange-500 transition-colors">FAQs</Link>
             <Link to="/news" className="text-gray-700 hover:text-orange-500 transition-colors">News</Link>
             <Link to="/branches" className="text-gray-700 hover:text-orange-500 transition-colors">Regional Branches</Link>
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full hover:from-orange-600 hover:to-red-600 transition-all">
+            <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-sm hover:from-orange-600 hover:to-red-600 transition-all">
               Get Quote
             </button>
           </div>
