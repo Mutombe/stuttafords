@@ -1,15 +1,160 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { Package, Truck } from "lucide-react";
 
-import Navigation from './components/nav.jsx';
-import HomePage from './components/home.jsx';
-import AboutPage from './components/about.jsx';
-import ServicesPage from './components/services.jsx';
-import FAQPage from './components/faq.jsx';
-import NewsPage from './components/news.jsx';
-import BranchesPage from './components/branches.jsx';
-import Footer from './components/footer.jsx';
+import Navigation from "./components/nav.jsx";
+import HomePage from "./components/home.jsx";
+import AboutPage from "./components/about.jsx";
+import ServicesPage from "./components/services.jsx";
+import FAQPage from "./components/faq.jsx";
+import NewsPage from "./components/news.jsx";
+import BranchesPage from "./components/branches.jsx";
+import Footer from "./components/footer.jsx";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+// Loading Screen Component
+const LoadingScreen = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 z-50 flex items-center justify-center"
+    >
+      <div className="text-center">
+        <motion.div
+          animate={{
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="relative inline-block"
+        >
+          {/* Logo Container - Replace with actual logo if available */}
+          <div className="relative">
+            {/* Company Name */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-6"
+            >
+              <h1 className="text-4xl font-bold text-white">STUTTAFORDS</h1>
+              <p className="text-orange-400 text-sm tracking-widest mt-1">
+                LOGISTICS
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Glow effect */}
+          <motion.div
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              scale: [0.9, 1.1, 0.9],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute inset-0 -z-10 blur-3xl"
+          >
+            <div className="w-full h-full bg-gradient-to-r from-orange-500 to-red-500 opacity-30 rounded-full" />
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-8"
+        >
+          {/* Loading dots */}
+          <div className="flex items-center justify-center space-x-1">
+            {[0, 0.2, 0.4].map((delay, index) => (
+              <motion.div
+                key={index}
+                animate={{
+                  opacity: [0.3, 1, 0.3],
+                  scale: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: delay,
+                  ease: "easeInOut",
+                }}
+                className="w-2.5 h-2.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"
+              />
+            ))}
+          </div>
+          <motion.p
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="text-gray-400 text-sm mt-4 font-medium tracking-wider"
+          >
+            Loading...
+          </motion.p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Page Wrapper for transitions
+const PageWrapper = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  return (
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <LoadingScreen key="loading" />
+      ) : (
+        <motion.div
+          key="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const App = () => {
   const location = useLocation();
@@ -265,18 +410,22 @@ const App = () => {
           scroll-behavior: smooth;
         }
       `}</style>
+      <ScrollToTop />
       <Navigation />
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/faq" element={<FAQPage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/branches" element={<BranchesPage />} />
-        </Routes>
-      </AnimatePresence>
-      <Footer />
+      <PageWrapper>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+            <Route path="/news" element={<NewsPage />} />
+            <Route path="/branches" element={<BranchesPage />} />
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+      </PageWrapper>
+      
     </div>
   );
 };
