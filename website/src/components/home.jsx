@@ -178,7 +178,7 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="pt-16 sm:pt-20">
+    <div className="pt-10 sm:pt-16">
       {/* Hero Section */}
       <section 
         className="relative min-h-[100svh] overflow-hidden bg-gray-900"
