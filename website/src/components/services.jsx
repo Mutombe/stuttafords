@@ -136,7 +136,7 @@ const ServicesPage = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <button className="bg-gradient-to-r from-orange-500 to-red-500 px-6 sm:px-8 py-3 sm:py-4 rounded-sm text-base sm:text-lg font-semibold hover:scale-105 transition-transform min-h-[48px]"
-                    onClick={window.scrollTo({ bottom: document.body.scrollHeight, behavior: 'smooth' })}>
+                    onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}>
                     Explore Services
                   </button>
                   <button className="border-2 border-white/50 px-6 sm:px-8 py-3 sm:py-4 rounded-sm text-base sm:text-lg font-semibold hover:bg-white/10 transition-all min-h-[48px]"
