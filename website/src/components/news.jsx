@@ -31,7 +31,7 @@ const NewsPage = () => {
       author: "wmupudzi",
       category: "Moving Tips",
       readTime: "5 min read",
-      image: "/3.jpg",
+      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop",
       views: "1.8k"
     },
     {
@@ -61,7 +61,7 @@ const NewsPage = () => {
       author: "Sustainability Team",
       category: "Sustainability",
       readTime: "4 min read",
-      image: "/2.jpg",
+      image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&h=400&fit=crop",
       views: "892"
     },
     {
@@ -71,7 +71,7 @@ const NewsPage = () => {
       author: "Logistics Team",
       category: "Shipping",
       readTime: "7 min read",
-      image: "air1.jpg",
+      image: "/air2.jpg",
       views: "2.1k"
     }
   ];
@@ -92,9 +92,9 @@ const NewsPage = () => {
     : articles.filter(article => article.category.toLowerCase() === activeCategory.toLowerCase());
 
   return (
-    <div className="pt-20">
-      {/* Hero Section - Clean & Minimal */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <div className="pt-16 sm:pt-20">
+      {/* Hero Section */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -102,31 +102,31 @@ const NewsPage = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <div className="inline-flex items-center px-4 py-2 bg-orange-100 text-orange-600 rounded-sm text-sm font-medium mb-6">
-              <TrendingUp className="h-4 w-4 mr-2" />
+            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-orange-100 text-orange-600 rounded-sm text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+              <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 mr-2" />
               THE DIFFERENCE WE MAKE
             </div>
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-4">
               Leading the Way in
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">
                 Logistics Excellence
               </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
               Explore the key insights, industry trends, and expert knowledge that businesses choose us as their logistics partner
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto"></div>
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto"></div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content - Masonry Layout */}
-      <section className="py-20 bg-white">
+      {/* Main Content */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-10 sm:mb-12 lg:mb-16">
             {categories.map((category, index) => (
               <motion.button
                 key={category}
@@ -134,7 +134,7 @@ const NewsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 onClick={() => setActiveCategory(category.toLowerCase())}
-                className={`px-6 py-3 rounded-sm transition-all ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-sm transition-all text-xs sm:text-sm lg:text-base min-h-[40px] ${
                   activeCategory === category.toLowerCase() || (activeCategory === 'all' && category === 'All')
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -145,17 +145,17 @@ const NewsPage = () => {
             ))}
           </div>
 
-          {/* Masonry Grid Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Responsive Grid Layout */}
+          <div className="space-y-6 sm:space-y-8">
             
-            {/* Featured Article - Large */}
+            {/* Featured Article */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="lg:col-span-8 lg:row-span-2"
+              className="w-full"
             >
-              <div className="relative overflow-hidden rounded-sm bg-white shadow-2xl group h-full min-h-[600px]">
+              <div className="relative overflow-hidden rounded-sm bg-white shadow-2xl group min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
                 {/* Background Image */}
                 <div className="absolute inset-0">
                   <div 
@@ -166,38 +166,38 @@ const NewsPage = () => {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 h-full flex flex-col justify-between p-8 text-white">
+                <div className="relative z-10 h-full min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] flex flex-col justify-between p-5 sm:p-6 lg:p-8 text-white">
                   <div>
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="bg-gradient-to-r from-orange-500 to-red-500 px-4 py-2 rounded-sm text-sm font-semibold">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-4">
+                      <span className="bg-gradient-to-r from-orange-500 to-red-500 px-3 sm:px-4 py-1.5 sm:py-2 rounded-sm text-xs sm:text-sm font-semibold">
                         Featured
                       </span>
-                      <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-sm text-sm">
+                      <span className="bg-white/20 backdrop-blur-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-sm text-xs sm:text-sm">
                         {featuredArticle.category}
                       </span>
                     </div>
                   </div>
 
                   <div>
-                    <h2 className="text-4xl font-bold mb-4 group-hover:text-orange-300 transition-colors">
+                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 group-hover:text-orange-300 transition-colors">
                       {featuredArticle.title}
                     </h2>
-                    <p className="text-white/90 text-lg mb-6 leading-relaxed">
+                    <p className="text-white/90 text-sm sm:text-base lg:text-lg mb-4 sm:mb-6 leading-relaxed line-clamp-2 sm:line-clamp-3">
                       {featuredArticle.excerpt}
                     </p>
                     
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
                         <span>{featuredArticle.date}</span>
                         <span>•</span>
                         <span>{featuredArticle.readTime}</span>
                         <span>•</span>
                         <div className="flex items-center gap-1">
-                          <Eye className="h-4 w-4" />
+                          <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                           {featuredArticle.views}
                         </div>
                       </div>
-                      <button className="bg-white text-gray-900 px-6 py-3 rounded-sm font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2">
+                      <button className="bg-white text-gray-900 px-4 sm:px-6 py-2.5 sm:py-3 rounded-sm text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center gap-2 min-h-[44px]">
                         Read Article <ArrowRight className="h-4 w-4" />
                       </button>
                     </div>
@@ -207,137 +207,133 @@ const NewsPage = () => {
             </motion.div>
 
             {/* Stats Cards */}
-            <div className="lg:col-span-4 space-y-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-                  className="bg-gradient-to-br from-gray-50 to-white rounded-sm p-6 border border-gray-100 hover:shadow-lg transition-all duration-300"
+                  className="bg-gradient-to-br from-gray-50 to-white rounded-sm p-4 sm:p-6 border border-gray-100 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-sm p-3">
-                      <stat.icon className="h-6 w-6 text-white" />
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
+                    <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-sm p-2 sm:p-3">
+                      <stat.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                     </div>
-                    <div>
-                      <div className="text-3xl font-bold text-gray-900">{stat.number}</div>
-                      <div className="text-gray-600 text-sm">{stat.label}</div>
+                    <div className="text-center sm:text-left">
+                      <div className="text-2xl sm:text-3xl font-bold text-gray-900">{stat.number}</div>
+                      <div className="text-gray-600 text-xs sm:text-sm">{stat.label}</div>
                     </div>
                   </div>
                 </motion.div>
               ))}
             </div>
 
-            {/* Article Grid - Varied Sizes */}
-            {filteredArticles.map((article, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                className={`
-                  ${index === 0 ? 'lg:col-span-7' : 
-                    index === 1 ? 'lg:col-span-5' : 
-                    index === 2 ? 'lg:col-span-6' : 
-                    index === 3 ? 'lg:col-span-6' : 
-                    'lg:col-span-4'}
-                  group cursor-pointer
-                `}
-              >
-                <div className="bg-white rounded-sm shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 h-full">
-                  {/* Image */}
-                  <div className="relative overflow-hidden h-48">
-                    <div 
-                      className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
-                      style={{ backgroundImage: `url(${article.image})` }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                    
-                    {/* Category Badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-sm text-xs font-semibold text-gray-900">
-                        {article.category}
-                      </span>
+            {/* Article Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+              {filteredArticles.map((article, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                  className="group cursor-pointer"
+                >
+                  <div className="bg-white rounded-sm shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
+                    {/* Image */}
+                    <div className="relative overflow-hidden h-48 sm:h-56">
+                      <div 
+                        className="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-700"
+                        style={{ backgroundImage: `url(${article.image})` }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+                        <span className="bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-1 rounded-sm text-xs font-semibold text-gray-900">
+                          {article.category}
+                        </span>
+                      </div>
+
+                      {/* Views */}
+                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex items-center gap-1 text-white text-xs sm:text-sm">
+                        <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
+                        {article.views}
+                      </div>
                     </div>
 
-                    {/* Views */}
-                    <div className="absolute top-4 right-4 flex items-center gap-1 text-white text-sm">
-                      <Eye className="h-4 w-4" />
-                      {article.views}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-center text-sm text-gray-500 mb-3">
-                      <Calendar className="h-4 w-4 mr-1" />
-                      <span>{article.date}</span>
-                      <span className="mx-2">•</span>
-                      <span>{article.readTime}</span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors line-clamp-2">
-                      {article.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
-                      {article.excerpt}
-                    </p>
-
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-sm flex items-center justify-center text-white text-sm font-bold">
-                          {article.author.charAt(0)}
-                        </div>
-                        <span className="text-sm text-gray-600">{article.author}</span>
+                    {/* Content */}
+                    <div className="p-4 sm:p-6 flex-1 flex flex-col">
+                      <div className="flex items-center text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                        <span>{article.date}</span>
+                        <span className="mx-2">•</span>
+                        <span>{article.readTime}</span>
                       </div>
                       
-                      <div className="flex items-center gap-2">
-                        <button className="p-2 hover:bg-gray-100 rounded-sm transition-colors">
-                          <Share2 className="h-4 w-4 text-gray-500" />
-                        </button>
-                        <button className="text-orange-500 font-semibold hover:text-orange-600 transition-colors flex items-center gap-1">
-                          Read <ArrowRight className="h-4 w-4" />
-                        </button>
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-orange-600 transition-colors line-clamp-2">
+                        {article.title}
+                      </h3>
+                      
+                      <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-3 leading-relaxed flex-1">
+                        {article.excerpt}
+                      </p>
+
+                      <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
+                        <div className="flex items-center gap-2">
+                          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-sm flex items-center justify-center text-white text-xs sm:text-sm font-bold">
+                            {article.author.charAt(0)}
+                          </div>
+                          <span className="text-xs sm:text-sm text-gray-600 truncate max-w-[100px] sm:max-w-none">{article.author}</span>
+                        </div>
+                        
+                        <div className="flex items-center gap-2">
+                          <button className="p-2 hover:bg-gray-100 rounded-sm transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center">
+                            <Share2 className="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" />
+                          </button>
+                          <button className="text-orange-500 text-xs sm:text-sm font-semibold hover:text-orange-600 transition-colors flex items-center gap-1">
+                            Read <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
 
           </div>
         </div>
       </section>
 
-      {/* Newsletter Section - Enhanced */}
-      <section className="py-20 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
+      {/* Newsletter Section */}
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
             >
-              <h2 className="text-4xl font-bold mb-6">Stay in the Loop</h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">Stay in the Loop</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8">
                 Get the latest logistics insights, industry trends, and expert tips delivered straight to your inbox every week.
               </p>
               
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>Weekly industry insights</span>
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 flex-shrink-0" />
+                  <span className="text-sm sm:text-base">Weekly industry insights</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>Exclusive moving tips</span>
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 flex-shrink-0" />
+                  <span className="text-sm sm:text-base">Exclusive moving tips</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-400" />
-                  <span>Special offers & discounts</span>
+                  <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-400 flex-shrink-0" />
+                  <span className="text-sm sm:text-base">Special offers & discounts</span>
                 </div>
               </div>
             </motion.div>
@@ -347,22 +343,23 @@ const NewsPage = () => {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-white/10 backdrop-blur-md rounded-sm p-8 border border-white/20"
+              viewport={{ once: true }}
+              className="bg-white/10 backdrop-blur-md rounded-sm p-6 sm:p-8 border border-white/20"
             >
-              <h3 className="text-2xl font-bold mb-6">Subscribe to Our Newsletter</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Subscribe to Our Newsletter</h3>
               
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base min-h-[44px]"
                 />
                 <input
                   type="email"
                   placeholder="Your Email Address"
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-white/10 border border-white/20 rounded-sm text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm sm:text-base min-h-[44px]"
                 />
-                <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 py-3 rounded-sm font-semibold hover:scale-105 transition-transform">
+                <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 py-3 rounded-sm text-sm sm:text-base font-semibold hover:scale-105 transition-transform min-h-[48px]">
                   Subscribe Now
                 </button>
               </div>

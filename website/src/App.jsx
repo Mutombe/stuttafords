@@ -421,6 +421,7 @@ const App = () => {
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/branches" element={<BranchesPage />} />
+            <Route path="*" element={<HomePage />} />
           </Routes>
         </AnimatePresence>
         <Footer />

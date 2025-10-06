@@ -126,52 +126,59 @@ const MainMapComponent = () => {
 
         // Custom marker icons
         const headOfficeIcon = window.L.divIcon({
-          className: 'custom-div-icon head-office',
-          html: `
-            <div style="
-              width: 40px; 
-              height: 40px; 
-              background: linear-gradient(135deg, #f59e0b, #dc2626); 
-              border-radius: 50%; 
-              border: 4px solid white; 
-              box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              position: relative;
-              z-index: 10;
-            ">
-              <svg width="20" height="20" fill="white" viewBox="0 0 24 24">
-                <path d="M3 21v-6h3v6h12v-6h3v6h-18zm15-8v-7h-12v7h-3l9-8 9 8h-3z"/>
-              </svg>
-            </div>
-          `,
-          iconSize: [40, 40],
-          iconAnchor: [20, 40]
-        });
-
-        const branchIcon = window.L.divIcon({
-          className: 'custom-div-icon branch-office',
+          className: "custom-div-icon head-office",
           html: `
             <div style="
               width: 32px; 
               height: 32px; 
-              background: linear-gradient(135deg, #3b82f6, #10b981); 
-              border-radius: 50%; 
+              background: #f59e0b; 
+              border-radius: 50% 50% 50% 0; 
               border: 3px solid white; 
-              box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+              box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4);
+              transform: rotate(-45deg);
               display: flex;
               align-items: center;
               justify-content: center;
-              z-index: 10;
             ">
-              <svg width="16" height="16" fill="white" viewBox="0 0 24 24">
-                <path d="M3 21v-6h3v6h12v-6h3v6h-18zm15-8v-7h-12v7h-3l9-8 9 8h-3z"/>
-              </svg>
+              <div style="
+                width: 12px;
+                height: 12px;
+                background: white;
+                border-radius: 50%;
+                transform: rotate(45deg);
+              "></div>
             </div>
           `,
           iconSize: [32, 32],
-          iconAnchor: [16, 32]
+          iconAnchor: [16, 32],
+        });
+
+        const branchIcon = window.L.divIcon({
+          className: "custom-div-icon branch-office",
+          html: `
+            <div style="
+              width: 28px; 
+              height: 28px; 
+              background: #3b82f6; 
+              border-radius: 50% 50% 50% 0; 
+              border: 3px solid white; 
+              box-shadow: 0 3px 8px rgba(59, 130, 246, 0.3);
+              transform: rotate(-45deg);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+              <div style="
+                width: 10px;
+                height: 10px;
+                background: white;
+                border-radius: 50%;
+                transform: rotate(45deg);
+              "></div>
+            </div>
+          `,
+          iconSize: [28, 28],
+          iconAnchor: [14, 28],
         });
 
         // Add markers for each branch
