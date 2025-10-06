@@ -6,6 +6,8 @@ import {
   FileText, Package, Sparkles, Command, ChevronRight,
   Globe, ArrowRight
 } from 'lucide-react';
+import { CiMenuFries } from "react-icons/ci";
+import { MdOutlineCloseFullscreen } from "react-icons/md";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -137,7 +139,7 @@ const Navigation = () => {
                 className="z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                {isOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-gray-700" />}
+                {isOpen ? <X className="h-6 w-6 text-gray-700" /> : <CiMenuFries className="h-6 w-6 text-gray-700" />}
               </button>
             </div>
           </div>
