@@ -42,27 +42,27 @@ const AboutPage = () => {
   const clients = [
     {
       name: "CBZ",
-      logo: "https://via.placeholder.com/100x60?text=CBZ",
+      logo: "/cbz1.png",
       industry: "Banking",
     },
     {
       name: "PSMI",
-      logo: "https://via.placeholder.com/100x60?text=PSMI",
+      logo: "/psms.png",
       industry: "Manufacturing",
     },
     {
       name: "Delta",
-      logo: "https://via.placeholder.com/100x60?text=Delta",
+      logo: "/delta.jpg",
       industry: "Beverages",
     },
     {
       name: "Nyaradzo",
-      logo: "https://via.placeholder.com/100x60?text=Nyaradzo",
+      logo: "/nyaradzo.jpeg",
       industry: "Funeral Services",
     },
     {
       name: "ZETDC",
-      logo: "https://via.placeholder.com/100x60?text=ZETDC",
+      logo: "/zetdc.png",
       industry: "Energy",
     },
   ];
