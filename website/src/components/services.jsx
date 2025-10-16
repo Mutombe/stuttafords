@@ -29,7 +29,7 @@ const ServicesPage = () => {
       image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
       features: ["Professional Packing", "Safe Transportation", "Local & International", "Insurance Coverage"],
       color: "from-blue-500 to-purple-600",
-      price: "From $299"
+      price: ""
     },
     {
       icon: PiBuildingOffice,
@@ -39,7 +39,7 @@ const ServicesPage = () => {
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
       features: ["Minimal Downtime", "Office Setup", "IT Equipment Handling", "Weekend Services"],
       color: "from-orange-500 to-red-500",
-      price: "From $899"
+      price: ""
     },
     {
       icon: GiWorld,
@@ -49,7 +49,7 @@ const ServicesPage = () => {
       image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&h=600&fit=crop",
       features: ["Customs Clearance", "Documentation", "Global Network", "Door-to-Door"],
       color: "from-green-500 to-teal-500",
-      price: "From $1,299"
+      price: ""
     }
   ];
 
