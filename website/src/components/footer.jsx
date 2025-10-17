@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <Mail className="h-4 w-4 mr-2 text-orange-400" />
-                <span className="text-sm">stuttafords@zol.co.zw</span>
+                <span className="text-sm">info@stuttafords.co.zw </span>
               </div>
               <div className="flex items-center">
                 <Clock className="h-4 w-4 mr-2 text-orange-400" />
