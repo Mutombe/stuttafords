@@ -18,6 +18,7 @@ import {
   Users,
   Navigation,
 } from "lucide-react";
+import { IoLogoWhatsapp } from "react-icons/io";
 import { IoIosHome } from "react-icons/io";
 import { HiOutlineHomeModern } from "react-icons/hi2";
 import { LiaPeopleCarrySolid } from "react-icons/lia";
@@ -96,6 +97,16 @@ const HomePage = () => {
 
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
+  };
+
+    const handleAction = (action) => {
+    if (action === "call") {
+      window.location.href = "tel:+263772937275";
+    } else if (action === "email") {
+      window.location.href = "mailto:info@stuttafords.co.zw";
+    } else if (action === "whatsapp") {
+      window.location.href = "https://wa.me/263772937275?text=Hello%20Stuttafords";
+    }
   };
 
   const handleTouchMove = (e) => {
@@ -481,6 +492,28 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+            {/* Floating Action Elements */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <button
+          className="group bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 hover:bg-green-300 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+          onClick={() => handleAction("whatsapp")}
+        >
+          <IoLogoWhatsapp className="w-6 h-6 group-hover:rotate-12 transition-transform text-white" />
+        </button>
+        <button
+          className="group bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 hover:bg-green-700 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+          onClick={() => handleAction("call")}
+        >
+          <Phone className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+        </button>
+        <button
+          className="group bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 hover:bg-blue-700 text-white p-3 rounded-full shadow-2xl transform hover:scale-110 transition-all duration-300"
+          onClick={() => handleAction("email")}
+        >
+          <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+        </button>
+      </div>
 
       {/* Contact Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
