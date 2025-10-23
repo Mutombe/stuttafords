@@ -229,7 +229,7 @@ const AboutPage = () => {
                   Excellence
                 </span>
                 <span className="block text-2xl sm:text-3xl lg:text-4xl xl:text-5xl mt-3 sm:mt-4 opacity-90">
-                  Since 1993
+                  Since 1957
                 </span>
               </h1>
 
@@ -334,9 +334,7 @@ const AboutPage = () => {
                   </h3>
                 </div>
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  To become the leading and preferred provider of relocation
-                  services locally, regionally and internationally, setting the
-                  standard for excellence in logistics.
+                To be the most trusted, internationally recognized providers of Logistics Solutions in Zimbabwe.
                 </p>
 
                 <div className="absolute top-3 sm:top-4 right-3 sm:right-4 grid grid-cols-3 gap-1">
@@ -369,11 +367,7 @@ const AboutPage = () => {
                   </h3>
                 </div>
                 <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  To generate a profitable return to all our stakeholders
-                  through the provision of unmatched first class service and to
-                  uphold professional business practices which emphasize
-                  utilization of resources in an environmentally friendly
-                  manner.
+                   To simplify the movement of goods through reliable, transparent, and end-to-end logistics services, ensuring every client experiences world class efficiency, care, and accountability from origin to destination.
                 </p>
 
                 <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4">

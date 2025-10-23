@@ -48,7 +48,7 @@ const BranchesPage = () => {
       hours: "Mon-Fri: 08:00 - 16:30",
       description: "Our headquarters and main operations center, providing comprehensive logistics solutions across the region.",
       image: "/harare.jpg",
-      established: "1993",
+      established: "1957",
       teamSize: "50+"
     },
     {
@@ -66,7 +66,7 @@ const BranchesPage = () => {
       hours: "Mon-Fri: 08:00 - 16:30",
       description: "Strategic location serving western Zimbabwe and regional transport corridors.",
       image: "/bulawayo.png",
-      established: "1995",
+      established: "1957",
       teamSize: "15+"
     },
     {
@@ -82,7 +82,7 @@ const BranchesPage = () => {
       hours: "Mon-Fri: 08:00 - 16:30",
       description: "Regional hub connecting Southern and Eastern Africa logistics networks.",
       image: "/malawi.jpg",
-      established: "1998",
+      established: "1957",
       teamSize: "12+"
     },
     {
@@ -99,7 +99,7 @@ const BranchesPage = () => {
       hours: "Mon-Sat: 08:00 - 16:30",
       description: "Member of SGI Group providing professional international removals and freight forwarding services.",
       image: "/zambia.jpg",
-      established: "1993",
+      established: "1957",
       teamSize: "20+"
     }
   ];
@@ -457,7 +457,7 @@ const MainMapComponent = () => {
                   <div className="text-sm opacity-80">Sqm Warehouse</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-sm p-6 text-center">
-                  <div className="text-4xl font-bold mb-2">1993</div>
+                  <div className="text-4xl font-bold mb-2">1957</div>
                   <div className="text-sm opacity-80">Established</div>
                 </div>
               </div>
@@ -768,7 +768,7 @@ const MainMapComponent = () => {
                   </div>
                   <div className="absolute inset-0 flex items-end p-8">
                     <div className="text-white">
-                      <h2 className="text-3xl font-bold mb-2">Est. 1993 - SGI Group Member</h2>
+                      <h2 className="text-3xl font-bold mb-2">Est. 1957 - SGI Group Member</h2>
                       <p className="text-purple-100">Professional, reliable and expert international services</p>
                     </div>
                   </div>
@@ -776,7 +776,7 @@ const MainMapComponent = () => {
                 
                 <div className="p-8">
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    Formed in 1993, Stuttafords Zambia is a member of the SGI Group of Companies which has branches in Zimbabwe, 
+                    Formed in 1957, Stuttafords Zambia is a member of the SGI Group of Companies which has branches in Zimbabwe, 
                     Malawi, Mozambique and South Africa. The company provides professional, reliable and expert international removals, 
                     freight forwarding logistics and cross borders services in the region.
                   </p>
