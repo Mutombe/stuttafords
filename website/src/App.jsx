@@ -15,6 +15,8 @@ import ServicesPage from "./components/services.jsx";
 import FAQPage from "./components/faq.jsx";
 import NewsPage from "./components/news.jsx";
 import BranchesPage from "./components/branches.jsx";
+import EventsPage from "./components/events.jsx";
+import GalleryPage from "./components/gallery.jsx";
 import Footer from "./components/footer.jsx";
 
 const ScrollToTop = () => {
@@ -259,6 +261,8 @@ const App = () => {
             <Route path="/faq" element={<FAQPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/branches" element={<BranchesPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/events" element={<EventsPage />} />
             <Route path="*" element={<HomePage />} />
           </Routes>
         </AnimatePresence>

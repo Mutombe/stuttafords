@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Phone, Mail, Clock, MapPin, Menu, X, Search,
   FileText, Package, Sparkles, Command, ChevronRight,
-  Globe, ArrowRight
+  Globe, ArrowRight, ChevronDown, Calendar, Image as ImageIcon
 } from 'lucide-react';
 import { CiMenuFries } from "react-icons/ci";
 import { MdOutlineCloseFullscreen } from "react-icons/md";
@@ -13,12 +13,25 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [newsMediaDropdownOpen, setNewsMediaDropdownOpen] = useState(false);
   const location = useLocation();
+  const dropdownRef = useRef(null);
   
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setNewsMediaDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Keyboard shortcut for search
@@ -36,6 +49,7 @@ const Navigation = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setIsOpen(false);
+    setNewsMediaDropdownOpen(false);
   }, [location]);
 
   // Prevent body scroll when mobile menu is open
@@ -51,14 +65,20 @@ const Navigation = () => {
   }, [isOpen]);
 
   const isActive = (path) => location.pathname === path;
+  const isNewsMediaActive = () => ['/news', '/events', '/gallery'].includes(location.pathname);
 
   const navLinks = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About Us' },
     { path: '/services', label: 'Our Services' },
     { path: '/faq', label: 'FAQs' },
-    { path: '/news', label: 'News' },
     { path: '/branches', label: 'Regional Branches' },
+  ];
+
+  const newsMediaLinks = [
+    { path: '/news', label: 'News', icon: FileText, description: 'Latest updates and announcements' },
+    { path: '/events', label: 'Events', icon: Calendar, description: 'Upcoming events and activities' },
+    { path: '/gallery', label: 'Gallery', icon: ImageIcon, description: 'Photo collection and media' },
   ];
 
   return (
@@ -90,7 +110,6 @@ const Navigation = () => {
                   <span className={isActive(link.path) ? 'text-orange-500' : ''}>
                     {link.label}
                   </span>
-                  {/* Active indicator - animated underline */}
                   {isActive(link.path) && (
                     <motion.div
                       layoutId="activeIndicator"
@@ -99,10 +118,82 @@ const Navigation = () => {
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
-                  {/* Hover underline */}
                   <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
                 </Link>
               ))}
+              
+              {/* News Media Dropdown */}
+              <div 
+                className="relative" 
+                ref={dropdownRef}
+                onMouseEnter={() => setNewsMediaDropdownOpen(true)}
+                onMouseLeave={() => setNewsMediaDropdownOpen(false)}
+              >
+                <button
+                  className={`relative text-gray-700 hover:text-orange-500 transition-colors font-medium group flex items-center gap-1 ${
+                    isNewsMediaActive() ? 'text-orange-500' : ''
+                  }`}
+                >
+                  <span>News & Media</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${newsMediaDropdownOpen ? 'rotate-180' : ''}`} />
+                  
+                  {isNewsMediaActive() && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500"
+                      initial={false}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                </button>
+
+                {/* Dropdown Menu */}
+                <AnimatePresence>
+                  {newsMediaDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl overflow-hidden border border-gray-100"
+                    >
+                      <div className="p-2">
+                        {newsMediaLinks.map((link, index) => (
+                          <Link
+                            key={link.path}
+                            to={link.path}
+                            className={`flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-all group ${
+                              isActive(link.path) ? 'bg-orange-50' : ''
+                            }`}
+                          >
+                            <div className={`p-2 rounded-lg bg-gradient-to-br ${
+                              isActive(link.path) 
+                                ? 'from-orange-500 to-red-500' 
+                                : 'from-gray-100 to-gray-200 group-hover:from-orange-500 group-hover:to-red-500'
+                            } transition-all`}>
+                              <link.icon className={`h-5 w-5 ${
+                                isActive(link.path) ? 'text-white' : 'text-gray-600 group-hover:text-white'
+                              }`} />
+                            </div>
+                            <div className="flex-1">
+                              <div className={`font-semibold ${
+                                isActive(link.path) ? 'text-orange-500' : 'text-gray-900 group-hover:text-orange-500'
+                              }`}>
+                                {link.label}
+                              </div>
+                              <div className="text-sm text-gray-600">
+                                {link.description}
+                              </div>
+                            </div>
+                            <ChevronRight className="h-5 w-5 text-gray-400 group-hover:text-orange-500 opacity-0 group-hover:opacity-100 transition-all" />
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
               
               {/* Desktop Search Button */}
               <motion.button
@@ -125,7 +216,6 @@ const Navigation = () => {
 
             {/* Mobile Menu Controls */}
             <div className="md:hidden flex items-center gap-2">
-              {/* Mobile Search Button */}
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsSearchOpen(true)}
@@ -134,7 +224,6 @@ const Navigation = () => {
                 <Search className="h-6 w-6 text-gray-700" />
               </motion.button>
               
-              {/* Mobile Menu Toggle */}
               <button 
                 className="z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors"
                 onClick={() => setIsOpen(!isOpen)}
@@ -149,11 +238,10 @@ const Navigation = () => {
       {/* Search Modal */}
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
-      {/* Full Screen Mobile Menu with Glassmorphism */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop blur overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -163,7 +251,6 @@ const Navigation = () => {
               onClick={() => setIsOpen(false)}
             />
             
-            {/* Menu Content */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -171,124 +258,65 @@ const Navigation = () => {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="fixed top-0 right-0 h-screen w-full bg-gradient-to-br from-gray-900/95 via-gray-800/95 to-black/95 backdrop-blur-2xl z-40 md:hidden overflow-y-auto"
             >
-              {/* Decorative background elements */}
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-20 right-10 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl" />
                 <div className="absolute bottom-20 left-10 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
               </div>
 
-              <div className="relative pt-32 pb-12 px-8">
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="mb-12 text-center"
-                >
-                  <p className="text-gray-400 text-sm">Professional Logistics & Moving Services</p>
-                </motion.div>
-
-                {/* Mobile Search in Menu */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.15 }}
-                  className="mb-8"
-                >
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      setTimeout(() => setIsSearchOpen(true), 300);
-                    }}
-                    className="w-full flex items-center justify-between px-6 py-4 rounded-xl text-lg font-semibold bg-gradient-to-r from-gray-800 to-gray-700 text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105"
+              <div className="relative z-10 p-8 pt-24">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.path}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    <div className="flex items-center gap-3">
-                      <Search className="h-5 w-5" />
-                      <span>Search</span>
-                    </div>
-                    <span className="text-xs bg-white/20 px-2 py-1 rounded">⌘K</span>
-                  </button>
+                    <Link
+                      to={link.path}
+                      className={`block py-4 text-2xl font-bold transition-all ${
+                        isActive(link.path)
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500'
+                          : 'text-white hover:text-orange-400'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+
+                {/* Mobile News Media Section */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
+                  className="mt-4"
+                >
+                  <div className="text-lg font-semibold text-gray-400 mb-3">News & Media</div>
+                  {newsMediaLinks.map((link, index) => (
+                    <Link
+                      key={link.path}
+                      to={link.path}
+                      className={`flex items-center gap-3 py-3 pl-4 transition-all ${
+                        isActive(link.path)
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500'
+                          : 'text-white/80 hover:text-white'
+                      }`}
+                    >
+                      <link.icon className="h-5 w-5" />
+                      <span className="text-lg font-medium">{link.label}</span>
+                    </Link>
+                  ))}
                 </motion.div>
 
-                {/* Navigation Links */}
-                <div className="flex flex-col space-y-2">
-                  {navLinks.map((link, index) => (
-                    <motion.div
-                      key={link.path}
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 * index, type: "spring", stiffness: 100 }}
-                    >
-                      <Link
-                        to={link.path}
-                        className={`block px-6 py-4 rounded-xl text-lg font-semibold transition-all transform hover:scale-105 ${
-                          isActive(link.path)
-                            ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-xl'
-                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <span>{link.label}</span>
-                          {isActive(link.path) && (
-                            <motion.div
-                              initial={{ scale: 0 }}
-                              animate={{ scale: 1 }}
-                              className="w-2 h-2 rounded-full bg-white"
-                            />
-                          )}
-                        </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* CTA Button */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="mt-12"
+                  className="mt-8"
                 >
-                  <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-2xl hover:shadow-orange-500/50 transition-all transform hover:scale-105">
-                    Get Free Quote
+                  <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-2xl transition-all">
+                    Get Quote
                   </button>
-                </motion.div>
-
-                {/* Contact Info */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="mt-12 pt-8 border-t border-white/10"
-                >
-                  <h3 className="text-white font-bold mb-4">Contact Us</h3>
-                  <div className="space-y-3 text-gray-400 text-sm">
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 text-orange-500" />
-                      <span>08677008972</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Mail className="h-4 w-4 text-orange-500" />
-                      <span>stuttafords@zol.co.zw</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Clock className="h-4 w-4 text-orange-500" />
-                      <span>Mon-Fri: 08:00 - 16:30</span>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Social Media or Additional Info */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.8 }}
-                  className="mt-8 text-center"
-                >
-                  <p className="text-gray-500 text-xs">
-                    © 2024 Stuttafords Zimbabwe. All rights reserved.
-                  </p>
                 </motion.div>
               </div>
             </motion.div>
@@ -299,7 +327,7 @@ const Navigation = () => {
   );
 };
 
-// Search Modal Component (from the search component)
+// SearchModal Component
 const SearchModal = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -353,6 +381,24 @@ const SearchModal = ({ isOpen, onClose }) => {
       keywords: ['news', 'updates', 'latest', 'blog'],
       description: 'Latest news and updates from Stuttafords Zimbabwe',
       content: 'Latest news updates announcements company logistics industry'
+    },
+    {
+      id: 'events',
+      title: 'Events',
+      type: 'page',
+      url: '/events',
+      keywords: ['events', 'activities', 'workshops', 'seminars'],
+      description: 'Join us at our upcoming events and activities',
+      content: 'Events activities workshops seminars conferences community'
+    },
+    {
+      id: 'gallery',
+      title: 'Gallery',
+      type: 'page',
+      url: '/gallery',
+      keywords: ['gallery', 'photos', 'images', 'pictures'],
+      description: 'Explore our photo gallery and media collection',
+      content: 'Photo gallery images pictures media collection portfolio'
     },
     {
       id: 'branches',
