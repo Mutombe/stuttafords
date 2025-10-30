@@ -68,6 +68,12 @@ const Footer = () => {
           <p className="text-gray-400">
             &copy; 2024 Stuttafords Zimbabwe (Pvt) Ltd. All rights reserved.
           </p>
+                            <br />
+          <p className="text-gray-400">
+        Developed By <a href="https://bitstudio.co.zw" target="_blank" rel="noopener noreferrer">
+          <strong style={{textDecoration: "underline"}}>Bit Studio Limited</strong> 
+        </a>
+      </p>
         </div>
       </div>
     </footer>

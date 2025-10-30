@@ -101,11 +101,11 @@ const HomePage = () => {
 
     const handleAction = (action) => {
     if (action === "call") {
-      window.location.href = "tel:+263772937275";
+      window.location.href = "tel:+263712523843";
     } else if (action === "email") {
       window.location.href = "mailto:info@stuttafords.co.zw";
     } else if (action === "whatsapp") {
-      window.location.href = "https://wa.me/263772937275?text=Hello%20Stuttafords";
+      window.location.href = "https://wa.me/263712523843?text=Hello%20Stuttafords";
     }
   };
 
