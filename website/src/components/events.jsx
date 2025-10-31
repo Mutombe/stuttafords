@@ -407,11 +407,11 @@ const EventDetailModal = ({ event, isOpen, onClose, categories }) => {
                   </p>
                   <div className="flex flex-wrap gap-4">
                     <a
-                      href="mailto:events@stuttafords.co.zw"
+                      href="mailto:info@stuttafords.co.zw"
                       className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium"
                     >
                       <Mail className="h-5 w-5" />
-                      events@stuttafords.co.zw
+                       info@stuttafords.co.zw
                     </a>
                     <a
                       href="tel:+263772937275"
@@ -468,7 +468,7 @@ const EventsPage = () => {
       attendees: 300,
       status: "past",
       description:
-        "Stuttafords Zimbabwe (Pvt) Ltd proudly participated as a Bronze Partner Sponsor at the Diplomatic Spouses Association (DSA) Diplomatic Charity Bazaar 2025, held on 25th October 2025 at Old Georgians Sports Club, Mount Pleasant, in Harare.The annual DSA Diplomatic Charity Bazaar is a signature event that unites the diplomatic community, local businesses, and the public in supporting charitable causes across Zimbabwe. The 2025 edition showcased a vibrant mix of international cuisine, cultural exhibitions, art, and music — all in the spirit of global unity and giving back. As part of its strong commitment to corporate social responsibility (CSR), Stuttafords Zimbabwe was honored to contribute to this meaningful initiative. Our participation as a Bronze Partner reflects our ongoing dedication to community development, education, and social empowerment. `At Stuttafords, we believe that business success goes hand in hand with giving back to the community. Supporting the DSA Diplomatic Charity Bazaar allows us to play a small part in empowering local charities and fostering cross-cultural collaboration,` said a Stuttafords spokesperson. The event’s proceeds will go toward supporting several charities focused on education, health, women, and youth empowerment programs across Zimbabwe. Stuttafords Zimbabwe extends sincere appreciation to the Diplomatic Spouses Association, fellow sponsors, and everyone who participated in making the 2025 Bazaar a remarkable success. Together, we continue to build bridges of goodwill and create a positive impact in our communities.",
+        "Stuttafords Zimbabwe (Pvt) Ltd proudly participated as a Bronze Partner Sponsor at the Diplomatic Spouses Association (DSA) Diplomatic Charity Bazaar 2025, held on 25th October 2025 at Old Georgians Sports Club, Mount Pleasant, in Harare.The annual DSA Diplomatic Charity Bazaar is a signature event that unites the diplomatic community, local businesses, and the public in supporting charitable causes across Zimbabwe. The 2025 edition showcased a vibrant mix of international cuisine, cultural exhibitions, art, and music — all in the spirit of global unity and giving back. As part of its strong commitment to corporate social responsibility (CSR), Stuttafords Zimbabwe was honored to contribute to this meaningful initiative. Our participation as a Bronze Partner reflects our ongoing dedication to community development, education, and social empowerment. `At Stuttafords, we believe that business success goes hand in hand with giving back to the community. Supporting the DSA Diplomatic Charity Bazaar allows us to play a small part in empowering local charities and fostering cross-cultural collaboration,` said a Stuttafords spokesperson. The event's proceeds will go toward supporting several charities focused on education, health, women, and youth empowerment programs across Zimbabwe. Stuttafords Zimbabwe extends sincere appreciation to the Diplomatic Spouses Association, fellow sponsors, and everyone who participated in making the 2025 Bazaar a remarkable success. Together, we continue to build bridges of goodwill and create a positive impact in our communities.",
       images: [
         "/event1.jpeg",
         "/event11.jpeg",
@@ -476,7 +476,19 @@ const EventsPage = () => {
         "/event1111.jpeg",
       ],
       tags: [
-        "StuttafordsZimbabwe, DSABazaar2025, DiplomaticCharityBazaar, CorporateSocialResponsibility, CommunityImpact, GivingBack, HarareEvents, ZimbabweBusiness, BronzePartner, SocialEmpowerment, WomenAndYouth, CulturalExchange, CharitySupport",
+        "StuttafordsZimbabwe",
+        "DSABazaar2025",
+        "DiplomaticCharityBazaar",
+        "CorporateSocialResponsibility",
+        "CommunityImpact",
+        "GivingBack",
+        "HarareEvents",
+        "ZimbabweBusiness",
+        "BronzePartner",
+        "SocialEmpowerment",
+        "WomenAndYouth",
+        "CulturalExchange",
+        "CharitySupport",
       ],
       featured: false,
     },
@@ -488,11 +500,9 @@ const EventsPage = () => {
     const matchesSearch =
       event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       event.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    const isPastEvent = event.status === "past";
+    return matchesCategory && matchesSearch && isPastEvent;
   });
-
-  const upcomingEvents = filteredEvents.filter((e) => e.status === "upcoming");
-  const pastEvents = filteredEvents.filter((e) => e.status === "past");
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -534,8 +544,8 @@ const EventsPage = () => {
               Events & Activities
             </h1>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-              Join us at our upcoming events, workshops, and community
-              initiatives. Stay connected with Stuttafords Zimbabwe.
+              Explore our past events, workshops, and community initiatives. See
+              how Stuttafords Zimbabwe has made an impact.
             </p>
           </motion.div>
         </div>
@@ -577,7 +587,7 @@ const EventsPage = () => {
         </div>
       </section>
 
-      {/* Upcoming Events Section */}
+      {/* Past Events Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -588,152 +598,16 @@ const EventsPage = () => {
             className="mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-              Upcoming Events
+              Past Events
             </h2>
             <p className="text-lg text-gray-600">
-              Mark your calendar for these exciting events
+              Take a look at our recent successful events
             </p>
           </motion.div>
 
-          {upcomingEvents.length > 0 ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {upcomingEvents.map((event, index) => (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`group cursor-pointer ${
-                    event.featured ? "lg:col-span-2" : ""
-                  }`}
-                  onClick={() => setSelectedEvent(event)}
-                >
-                  <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                    <div
-                      className={`relative ${event.featured ? "lg:flex" : ""}`}
-                    >
-                      {/* Event Image Carousel */}
-                      <div
-                        className={`relative overflow-hidden ${
-                          event.featured ? "lg:w-1/2 h-96" : "h-56"
-                        }`}
-                      >
-                        <ImageCarousel
-                          images={event.images}
-                          eventTitle={event.title}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-
-                        {event.featured && (
-                          <div className="absolute top-4 left-4 z-20">
-                            <span className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                              Featured Event
-                            </span>
-                          </div>
-                        )}
-
-                        <div className="absolute bottom-4 left-4 text-white z-20 pointer-events-none">
-                          <div className="text-3xl font-bold">
-                            {new Date(event.date).getDate()}
-                          </div>
-                          <div className="text-sm">
-                            {new Date(event.date).toLocaleDateString("en-US", {
-                              month: "short",
-                            })}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Event Details */}
-                      <div
-                        className={`p-6 ${event.featured ? "lg:w-1/2" : ""}`}
-                      >
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="px-3 py-1 bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold rounded-full">
-                            {
-                              categories.find((c) => c.id === event.category)
-                                ?.label
-                            }
-                          </span>
-                        </div>
-
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
-                          {event.title}
-                        </h3>
-
-                        <p className="text-gray-600 mb-4 line-clamp-2">
-                          {event.description}
-                        </p>
-
-                        <div className="space-y-2 mb-4">
-                          <div className="flex items-center gap-2 text-gray-700">
-                            <Clock className="h-4 w-4 text-orange-500" />
-                            <span className="text-sm">{event.time}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-gray-700">
-                            <MapPin className="h-4 w-4 text-orange-500" />
-                            <span className="text-sm">{event.location}</span>
-                          </div>
-                          <div className="flex items-center gap-2 text-gray-700">
-                            <Users className="h-4 w-4 text-orange-500" />
-                            <span className="text-sm">
-                              {event.attendees}+ Expected Attendees
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {event.tags.map((tag, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-
-                        <button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 group">
-                          Register Now
-                          <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <Calendar className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600 text-lg">No upcoming events found</p>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Past Events Section */}
-      {pastEvents.length > 0 && (
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-                Past Events
-              </h2>
-              <p className="text-lg text-gray-600">
-                Take a look at our recent successful events
-              </p>
-            </motion.div>
-
+          {filteredEvents.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {pastEvents.map((event, index) => (
+              {filteredEvents.map((event, index) => (
                 <motion.div
                   key={event.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -777,9 +651,14 @@ const EventsPage = () => {
                 </motion.div>
               ))}
             </div>
-          </div>
-        </section>
-      )}
+          ) : (
+            <div className="text-center py-12">
+              <Calendar className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600 text-lg">No past events found</p>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
